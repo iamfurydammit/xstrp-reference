@@ -4,5 +4,7 @@ version = "0.1.0"
 edition = "2021"
 description = "Reference implementation skeleton for the XRP Safe Transfer & Recovery Protocol (XSTRP)"
 license = "Apache-2.0"
+
 [dependencies]
 serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
