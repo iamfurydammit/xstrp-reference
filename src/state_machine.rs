@@ -60,4 +60,14 @@ mod tests {
 
         assert_eq!(new_state, IntentState::Committed);
     }
+#[test]
+    fn committed_can_become_completed() {
+        let state = IntentState::Committed;
+
+        let new_state = state
+            .transition(TransitionEvent::CompletionProofVerified)
+            .unwrap();
+
+        assert_eq!(new_state, IntentState::Completed);
+    }
 }
