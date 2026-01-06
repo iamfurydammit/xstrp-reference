@@ -3,10 +3,11 @@
 //! An Intent is an immutable, cryptographically bound declaration
 //! of transfer parameters. No receiver address is included.
 
-use serde::{Deserialize, Serialize};
+use serde::Serialize;
 
-#[derive(Debug, Clone, Serialize, Deserialize)]
+#[derive(Debug, Clone, Serialize)]
 pub struct TransferIntent {
+
     pub amount_xrp_drops: u64,
     pub expiry_unix: u64,
     pub protocol_version: &'static str,
