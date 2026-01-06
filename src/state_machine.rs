@@ -7,3 +7,12 @@ pub enum IntentState {
     Refunded,
     Invalid,
 }
+#[derive(Debug)]
+pub enum TransitionEvent {
+    ReceiverConfirms,
+    CompletionProofVerified,
+    ProofInvalid,
+    Timeout,
+    InvalidDetected,
+    RefundProcessed,
+}
