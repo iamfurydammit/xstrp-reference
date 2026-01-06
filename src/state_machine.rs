@@ -16,3 +16,8 @@ pub enum TransitionEvent {
     InvalidDetected,
     RefundProcessed,
 }
+impl IntentState {
+    pub fn transition(self, _event: TransitionEvent) -> Self {
+        self
+    }
+}
