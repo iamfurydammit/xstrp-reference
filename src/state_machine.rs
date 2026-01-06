@@ -21,3 +21,13 @@ impl IntentState {
         self
     }
 }
+impl IntentState {
+    pub fn transition(self, event: TransitionEvent) -> Self {
+        match (self, event) {
+            (IntentState::Created, TransitionEvent::ReceiverConfirms) => {
+                IntentState::Committed
+            }
+            _ => self,
+        }
+    }
+}
