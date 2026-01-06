@@ -73,4 +73,14 @@ mod tests {
 
         assert_eq!(new_state, IntentState::Completed);
     }
+    #[test]
+fn committed_with_invalid_proof_becomes_invalid() {
+    let state = IntentState::Committed;
+
+    let new_state = state
+        .transition(TransitionEvent::ProofInvalid)
+        .unwrap();
+
+    assert_eq!(new_state, IntentState::Invalid);
+}
 }
