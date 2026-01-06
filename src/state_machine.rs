@@ -29,7 +29,10 @@ impl IntentState {
     | IntentState::Invalid,
     _
 ) => Err("Terminal state cannot transition"),
-
+            
+(IntentState::Committed, TransitionEvent::CompletionProofVerified) => {
+    Ok(IntentState::Completed)
+},
             (IntentState::Created, TransitionEvent::ReceiverConfirms) => {
                 Ok(IntentState::Committed)
             }
