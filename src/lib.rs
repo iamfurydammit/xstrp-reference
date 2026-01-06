@@ -2,6 +2,7 @@
 //!
 //! This crate contains protocol-level logic only.
 //! No custody, no network authority, no UI assumptions.
+pub mod state_machine;
 
 pub mod intent;
 
