@@ -27,7 +27,11 @@ impl IntentState {
             (IntentState::Created, TransitionEvent::ReceiverConfirms) => {
                 IntentState::Committed
             }
+            (IntentState::Created, TransitionEvent::Timeout) => {
+                IntentState::Expired
+            }
             _ => self,
         }
     }
 }
+
