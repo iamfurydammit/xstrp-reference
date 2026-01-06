@@ -36,3 +36,18 @@ impl IntentState {
         }
     }
 }
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn created_can_become_committed() {
+        let state = IntentState::Created;
+
+        let new_state = state
+            .transition(TransitionEvent::ReceiverConfirms)
+            .unwrap();
+
+        assert_eq!(new_state, IntentState::Committed);
+    }
+}
