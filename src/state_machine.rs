@@ -59,3 +59,11 @@ mod tests {
         assert_eq!(new_state, IntentState::Committed);
     }
 }
+#[test]
+fn committed_is_terminal() {
+    let state = IntentState::Committed;
+
+    let result = state.transition(TransitionEvent::Timeout);
+
+    assert!(result.is_err());
+}
