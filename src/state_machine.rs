@@ -33,6 +33,9 @@ impl IntentState {
 (IntentState::Committed, TransitionEvent::CompletionProofVerified) => {
     Ok(IntentState::Completed)
 },
+            (IntentState::Committed, TransitionEvent::ProofInvalid) => {
+    Ok(IntentState::Invalid)
+},
             (IntentState::Created, TransitionEvent::ReceiverConfirms) => {
                 Ok(IntentState::Committed)
             }
