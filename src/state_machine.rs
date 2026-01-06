@@ -16,11 +16,7 @@ pub enum TransitionEvent {
     InvalidDetected,
     RefundProcessed,
 }
-impl IntentState {
-    pub fn transition(self, _event: TransitionEvent) -> Self {
-        self
-    }
-}
+
 impl IntentState {
     pub fn transition(self, event: TransitionEvent) -> Self {
         match (self, event) {
@@ -30,8 +26,10 @@ impl IntentState {
             (IntentState::Created, TransitionEvent::Timeout) => {
                 IntentState::Expired
             }
+            (IntentState::Expired, TransitionEvent::RefundProcessed) => {
+                IntentState::Refunded
+            }
             _ => self,
         }
     }
 }
-
