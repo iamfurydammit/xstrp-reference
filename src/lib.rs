@@ -8,3 +8,10 @@ pub mod intent;
 
 /// Re-export the core intent type for easier use.
 pub use intent::TransferIntent;
+#[cfg(test)]
+mod smoke_test {
+    #[test]
+    fn it_runs_tests() {
+        assert_eq!(2 + 2, 4);
+    }
+}
