@@ -23,6 +23,14 @@ impl IntentState {
         event: TransitionEvent,
     ) -> Result<IntentState, &'static str> {
         match (self, event) {
+            (
+    IntentState::Committed
+    | IntentState::Completed
+    | IntentState::Refunded
+    | IntentState::Invalid,
+    _
+) => Err("Terminal state cannot transition"),
+
             (IntentState::Created, TransitionEvent::ReceiverConfirms) => {
                 Ok(IntentState::Committed)
             }
