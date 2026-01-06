@@ -1,1 +1,7 @@
+[package]
+name = "xstrp"
+version = "0.1.0"
+edition = "2021"
+description = "Reference implementation skeleton for the XRP Safe Transfer & Recovery Protocol (XSTRP)"
+license = "Apache-2.0"
 
