@@ -18,18 +18,21 @@ pub enum TransitionEvent {
 }
 
 impl IntentState {
-    pub fn transition(self, event: TransitionEvent) -> Self {
+    pub fn transition(
+        self,
+        event: TransitionEvent,
+    ) -> Result<IntentState, &'static str> {
         match (self, event) {
             (IntentState::Created, TransitionEvent::ReceiverConfirms) => {
-                IntentState::Committed
+                Ok(IntentState::Committed)
             }
             (IntentState::Created, TransitionEvent::Timeout) => {
-                IntentState::Expired
+                Ok(IntentState::Expired)
             }
             (IntentState::Expired, TransitionEvent::RefundProcessed) => {
-                IntentState::Refunded
+                Ok(IntentState::Refunded)
             }
-            _ => self,
+            _ => Err("Illegal state transition"),
         }
     }
 }
