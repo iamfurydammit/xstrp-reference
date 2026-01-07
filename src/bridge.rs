@@ -31,20 +31,20 @@ mod tests {
     }
 
     fn sample_intent() -> TransferIntent {
-        TransferIntent {
-            amount_xrp_drops: Amount(100),
-            expiry_unix: 999_999_999,
-            protocol_version: 1,
-            fee_drops: Amount(1),
-        }
+    TransferIntent {
+        amount_xrp_drops: 100,
+        expiry_unix: 999_999_999,
+        protocol_version: "v1",
+        fee_drops: 1,
     }
+}
 
     fn valid_proof() -> CompletionProof {
         CompletionProof {
             intent_id: test_intent_id(),
             receiver: Address("receiver".to_string()),
             claimed_amount: Amount(100),
-            evidence_ref: EvidenceRef("evidence".to_string()),
+            evidence_ref: EvidenceRef(b"evidence".to_vec()),
             timestamp: 1,
             metadata: None,
         }
@@ -55,7 +55,7 @@ mod tests {
             intent_id: test_intent_id(),
             receiver: Address("receiver".to_string()),
             claimed_amount: Amount(999),
-            evidence_ref: EvidenceRef("evidence".to_string()),
+            evidence_ref: EvidenceRef(b"evidence".to_vec()),
             timestamp: 1,
             metadata: None,
         }
