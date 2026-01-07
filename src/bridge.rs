@@ -43,7 +43,7 @@ mod tests {
         CompletionProof {
             intent_id: test_intent_id(),
             receiver: Address("receiver".to_string()),
-            claimed_amount: Amount(100),
+            claimed_amount: Amount 100,
             evidence_ref: EvidenceRef(b"evidence".to_vec()),
             timestamp: 1,
             metadata: None,
@@ -54,7 +54,7 @@ mod tests {
         CompletionProof {
             intent_id: test_intent_id(),
             receiver: Address("receiver".to_string()),
-            claimed_amount: Amount(999),
+            claimed_amount: Amount 999,
             evidence_ref: EvidenceRef(b"evidence".to_vec()),
             timestamp: 1,
             metadata: None,
