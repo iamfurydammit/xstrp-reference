@@ -45,7 +45,7 @@ Each use of the Software, defined as any execution, invocation, deployment, auto
 
 Fee Terms
 
-Amount: 0.01 (unit defined by implementation)
+Amount: 0.01 units of the fee denomination defined by the Software
 
 Frequency: Per use
 
@@ -101,5 +101,7 @@ Governing Principle
 
 This License is governed by the principle of explicit consent:
 If you use the Software, you accept these terms in full.
+This License shall be enforceable regardless of jurisdiction, venue,
+or method of software distribution.
 
 End of License
