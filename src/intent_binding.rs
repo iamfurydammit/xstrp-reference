@@ -8,8 +8,11 @@
 /// - Enforce correctness
 /// - Interact with the state machine
 /// - Assume XRPL semantics
-#[derive(Debug, Clone, PartialEq, Eq)]
+use serde::Serialize;
+
+#[derive(Debug, Clone, PartialEq, Eq, Serialize)]
 pub struct IntentBinding {
+
     /// Identifier for the target ledger or environment.
     /// Example: "XRPL-mainnet", "XRPL-testnet", "simulated-ledger"
     pub ledger_id: String,
