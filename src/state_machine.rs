@@ -89,4 +89,14 @@ fn committed_with_invalid_proof_becomes_invalid() {
 
     assert_eq!(new_state, IntentState::Invalid);
 }
+    #[test]
+fn created_with_invalid_detected_becomes_invalid() {
+    let state = IntentState::Created;
+
+    let new_state = state
+        .transition(TransitionEvent::InvalidDetected)
+        .unwrap();
+
+    assert_eq!(new_state, IntentState::Invalid);
+}
 }
