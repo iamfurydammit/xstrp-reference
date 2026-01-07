@@ -22,9 +22,10 @@ pub fn apply_completion_proof(
 #[cfg(test)]
 mod tests {
     use super::apply_completion_proof;
-    use crate::intent::{IntentId, TransferIntent, Address};
+    use crate::intent::{IntentId, TransferIntent, Address, Amount};
     use crate::proof::{CompletionProof, EvidenceRef};
     use crate::state_machine::IntentState;
+
 
     fn test_intent_id() -> IntentId {
         IntentId([1u8; 32])
