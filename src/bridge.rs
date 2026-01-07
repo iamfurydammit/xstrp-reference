@@ -1,24 +1,50 @@
+use crate::intent::TransferIntent;
+use crate::proof::CompletionProof;
+use crate::state_machine::{IntentState, TransitionEvent};
+
+pub fn apply_completion_proof(
+    state: IntentState,
+    intent: &TransferIntent,
+    proof: &CompletionProof,
+) -> Result<IntentState, &'static str> {
+    if state != IntentState::Committed {
+        return Err("Completion proof can only be applied in Committed state");
+    }
+
+    let event = if proof.validate_against(intent).is_ok() {
+        TransitionEvent::CompletionProofVerified
+    } else {
+        TransitionEvent::ProofInvalid
+    };
+
+    state.transition(event)
+}
 #[cfg(test)]
 mod tests {
-    use super::*;
-    use crate::intent::{Address, IntentId, TransferIntent};
-    use crate::proof::CompletionProof;
+    use super::apply_completion_proof;
+    use crate::intent::{Amount, IntentId, TransferIntent, Address};
+    use crate::proof::{CompletionProof, EvidenceRef};
     use crate::state_machine::IntentState;
+
+    fn test_intent_id() -> IntentId {
+        IntentId([1u8; 32])
+    }
 
     fn sample_intent() -> TransferIntent {
         TransferIntent {
-            intent_id: IntentId("intent123".to_string()),
-            sender: Address("sender".to_string()),
-            receiver: Address("receiver".to_string()),
-            amount: 100,
-            expires_at: 999_999_999,
+            amount_xrp_drops: Amount(100),
+            expiry_unix: 999_999_999,
+            protocol_version: 1,
+            fee_drops: Amount(1),
         }
     }
 
     fn valid_proof() -> CompletionProof {
         CompletionProof {
-            claimed_amount: 100,
-            evidence_ref: Some("evidence".to_string()),
+            intent_id: test_intent_id(),
+            receiver: Address("receiver".to_string()),
+            claimed_amount: Amount(100),
+            evidence_ref: EvidenceRef("evidence".to_string()),
             timestamp: 1,
             metadata: None,
         }
@@ -26,8 +52,10 @@ mod tests {
 
     fn invalid_proof() -> CompletionProof {
         CompletionProof {
-            claimed_amount: 999, // mismatched amount
-            evidence_ref: None,
+            intent_id: test_intent_id(),
+            receiver: Address("receiver".to_string()),
+            claimed_amount: Amount(999),
+            evidence_ref: EvidenceRef("evidence".to_string()),
             timestamp: 1,
             metadata: None,
         }
@@ -69,3 +97,4 @@ mod tests {
         assert!(result.is_err());
     }
 }
+
