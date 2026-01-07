@@ -2,12 +2,14 @@
 //!
 //! This crate contains protocol-level logic only.
 //! No custody, no network authority, no UI assumptions.
-pub mod state_machine;
 
+pub mod state_machine;
 pub mod intent;
+pub mod proof;
 
 /// Re-export the core intent type for easier use.
 pub use intent::TransferIntent;
+
 #[cfg(test)]
 mod smoke_test {
     #[test]
@@ -15,3 +17,4 @@ mod smoke_test {
         assert_eq!(2 + 2, 4);
     }
 }
+
