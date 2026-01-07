@@ -1,6 +1,5 @@
-# xstrp-reference
-Reference implementation skeleton for the XRP Safe Transfer &amp; Recovery Protocol (XSTRP)
-Specification files for XSTRP.
+# XSTRP — XRP Safe Transfer & Recovery Protocol
+
 ## Reference Implementation Status
 
 - Current version: v0.1 (reference-only)
