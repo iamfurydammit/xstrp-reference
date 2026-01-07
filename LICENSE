@@ -1,21 +1,105 @@
-MIT License
+Payne Protocol License (PPL-0.1)
+Version 1.0 – January 2026
 
-Copyright (c) 2026 R. Payne
+Copyright
 
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
+Copyright © 2026 R. Payne
 
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
+Grant of Rights
 
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.
+Subject to the terms and conditions of this License, permission is hereby granted to any person or entity obtaining a copy of this software and associated documentation files (the “Software”) to:
+
+use the Software
+
+copy the Software
+
+modify the Software
+
+merge the Software
+
+publish the Software
+
+distribute the Software
+
+sublicense the Software
+
+sell copies of the Software
+
+provided that all conditions of this License are met.
+
+Mandatory Attribution
+
+All copies, substantial portions, derivatives, or deployments of the Software must:
+
+Retain the following attribution notice in source form and documentation:
+
+“Original software authored by R. Payne (2026).”
+
+Retain this License file in full.
+
+Failure to provide attribution constitutes a material breach of this License.
+
+Usage Fee Requirement (Mandatory)
+
+Each use of the Software, defined as any execution, invocation, deployment, automated call, embedded operation, or protocol-level utilization, requires payment of a non-refundable usage fee.
+
+Fee Terms
+
+Amount: 0.01 (unit defined by implementation)
+
+Frequency: Per use
+
+Recipient: Blockchain address specified within the Software or its configuration
+
+Settlement Medium: Blockchain network specified within the Software
+
+Payment must occur prior to or concurrently with use.
+
+Blockchain Enforcement Acknowledgment
+
+By using the Software, you acknowledge and agree that:
+
+The Software may include code that enforces fee settlement
+
+Blockchain records may be used as evidence of compliance or non-compliance
+
+Failure to remit required fees automatically terminates your rights under this License
+
+Prohibited Use
+
+You may not:
+
+Remove, bypass, disable, or obfuscate fee-enforcement mechanisms
+
+Alter payment logic to redirect fees
+
+Falsify usage reporting
+
+Use the Software without settlement of the required fee
+
+Any such action constitutes intentional license violation.
+
+License Termination
+
+This License automatically and immediately terminates if you fail to comply with any term herein.
+
+Upon termination:
+
+All rights granted under this License cease
+
+Continued use constitutes copyright infringement
+
+No Warranty
+
+THE SOFTWARE IS PROVIDED “AS IS”, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, AND NON-INFRINGEMENT.
+
+Limitation of Liability
+
+IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR ANY CLAIM, DAMAGES, OR OTHER LIABILITY ARISING FROM THE USE OR INABILITY TO USE THE SOFTWARE, WHETHER IN CONTRACT, TORT, OR OTHERWISE.
+
+Governing Principle
+
+This License is governed by the principle of explicit consent:
+If you use the Software, you accept these terms in full.
+
+End of License
