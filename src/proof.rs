@@ -14,3 +14,30 @@ pub struct CompletionProof {
 
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub struct EvidenceRef(pub Vec<u8>);
+use crate::intent::TransferIntent;
+
+impl CompletionProof {
+    pub fn validate_against(
+        &self,
+        intent: &TransferIntent,
+    ) -> Result<(), &'static str> {
+
+        if self.intent_id.0.len() != 32 {
+            return Err("invalid intent id length");
+        }
+
+        if self.claimed_amount.0 != intent.amount_xrp_drops {
+            return Err("amount mismatch");
+        }
+
+        if self.timestamp > intent.expiry_unix {
+            return Err("proof expired");
+        }
+
+        if self.evidence_ref.0.is_empty() {
+            return Err("missing evidence");
+        }
+
+        Ok(())
+    }
+}
