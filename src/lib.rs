@@ -6,6 +6,7 @@
 pub mod state_machine;
 pub mod intent;
 pub mod proof;
+pub mod bridge;
 
 /// Re-export the core intent type for easier use.
 pub use intent::TransferIntent;
