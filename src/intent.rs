@@ -5,6 +5,15 @@
 
 use serde::Serialize;
 
+#[derive(Debug, Clone, PartialEq, Eq, Hash)]
+pub struct IntentId(pub [u8; 32]);
+
+#[derive(Debug, Clone, PartialEq, Eq)]
+pub struct Address(pub String);
+
+#[derive(Debug, Clone, PartialEq, Eq)]
+pub struct Amount(pub u64);
+
 #[derive(Debug, Clone, Serialize)]
 pub struct TransferIntent {
 
