@@ -10,8 +10,12 @@
 /// - Assume XRPL semantics
 use serde::Serialize;
 
-#[derive(Debug, Clone, PartialEq, Eq, Serialize)]
+#[derive(Debug, Clone, Serialize)]
 pub struct IntentBinding {
+    pub ledger_id: String,
+    pub sender: String,
+    pub receiver: String,
+}
 
     /// Identifier for the target ledger or environment.
     /// Example: "XRPL-mainnet", "XRPL-testnet", "simulated-ledger"
