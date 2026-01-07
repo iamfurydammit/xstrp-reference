@@ -90,5 +90,8 @@ will focus on:
 
 ## License
 
-[Add license information here]
+## License
+
+MIT License — see the `LICENSE` file for details.
+
 
