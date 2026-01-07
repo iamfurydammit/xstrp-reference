@@ -31,14 +31,15 @@ mod tests {
         IntentId([1u8; 32])
     }
 
-    fn sample_intent() -> TransferIntent {
-        TransferIntent {
-            amount_xrp_drops: 100,
-            expiry_unix: 999_999_999,
-            protocol_version: "v1",
-            fee_drops: 1,
-        }
+   fn sample_intent() -> TransferIntent {
+    TransferIntent {
+        amount_xrp_drops: 100,
+        expiry_unix: 999_999_999,
+        protocol_version: "v1",
+        fee_drops: 1,
+        binding: None,
     }
+}
 
     fn valid_proof() -> CompletionProof {
         CompletionProof {
