@@ -1,6 +1,7 @@
 use crate::intent::TransferIntent;
 use crate::proof::CompletionProof;
 use crate::state_machine::{IntentState, TransitionEvent};
+use crate::intent::Amount;
 
 pub fn apply_completion_proof(
     state: IntentState,
