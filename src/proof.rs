@@ -1,6 +1,7 @@
 // src/proof.rs
 
 use crate::intent::{IntentId, Address, Amount};
+use crate::intent::TransferIntent;
 
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub struct CompletionProof {
@@ -14,7 +15,6 @@ pub struct CompletionProof {
 
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub struct EvidenceRef(pub Vec<u8>);
-use crate::intent::TransferIntent;
 
 impl CompletionProof {
     pub fn validate_against(
@@ -40,7 +40,9 @@ impl CompletionProof {
 
         Ok(())
     }
-    #[cfg(test)]
+}
+
+#[cfg(test)]
 mod tests {
     use super::*;
     use crate::intent::{TransferIntent, IntentId, Address, Amount};
@@ -101,4 +103,3 @@ mod tests {
         assert_eq!(err, "missing evidence");
     }
 }
-
