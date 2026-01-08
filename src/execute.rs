@@ -21,7 +21,7 @@ pub fn execute_transition(
     let outcome = validate_transition(request);
 
     match outcome {
-        ValidationOutcome::Approved => (request.requested_state, outcome),
+        ValidationOutcome::Approved => (request.requested_state.clone(), outcome),
         _ => (current_state, outcome),
     }
 }
