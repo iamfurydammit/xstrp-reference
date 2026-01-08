@@ -12,11 +12,11 @@ use xstrp::{
 
 fn sample_intent() -> TransferIntent {
     TransferIntent {
-        id: "intent-1".to_string(),
-        sender: "alice".to_string(),
-        receiver: "bob".to_string(),
-        amount: 100,
-        expiry: 999999,
+        amount_xrp_drops: 1_000_000,
+        expiry_unix: 9_999_999,
+        protocol_version: 1,
+        fee_drops: 10,
+        binding: None,
     }
 }
 
@@ -27,7 +27,7 @@ fn created_to_receiver_confirmed_requires_receiver_proof() {
     let request = ValidationRequest {
         intent: &intent,
         current_state: IntentState::Created,
-        requested_state: IntentState::ReceiverConfirmed,
+        requested_state: IntentState::ReceiverAccepted,
         proofs: vec![],
     };
 
@@ -45,11 +45,11 @@ fn created_to_receiver_confirmed_succeeds_with_proof() {
     let request = ValidationRequest {
         intent: &intent,
         current_state: IntentState::Created,
-        requested_state: IntentState::ReceiverConfirmed,
+        requested_state: IntentState::ReceiverAccepted,
         proofs: vec![Proof::ReceiverAcknowledgment(
             ReceiverAcknowledgmentProof {
-                intent_id: intent.id.clone(),
-                receiver_id: intent.receiver.clone(),
+                intent_id: "intent-1".to_string(),
+                receiver_id: "receiver".to_string(),
             },
         )],
     };
@@ -57,7 +57,7 @@ fn created_to_receiver_confirmed_succeeds_with_proof() {
     let (state, outcome) =
         execute_transition(IntentState::Created, &request);
 
-    assert_eq!(state, IntentState::ReceiverConfirmed);
+    assert_eq!(state, IntentState::ReceiverAccepted);
     assert_eq!(outcome, ValidationOutcome::Approved);
 }
 
@@ -107,7 +107,7 @@ fn committed_to_completed_succeeds_with_settlement_proof() {
         requested_state: IntentState::Completed,
         proofs: vec![Proof::SettlementFulfillment(
             SettlementFulfillmentProof {
-                intent_id: intent.id.clone(),
+                intent_id: "intent-1".to_string(),
                 settlement_reference: "settlement-xyz".to_string(),
             },
         )],
@@ -117,5 +117,8 @@ fn committed_to_completed_succeeds_with_settlement_proof() {
         execute_transition(IntentState::Committed, &request);
 
     assert_eq!(state, IntentState::Completed);
+    assert_eq!(outcome, ValidationOutcome::Approved);
+}
+
     assert_eq!(outcome, ValidationOutcome::Approved);
 }
