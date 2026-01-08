@@ -1,0 +1,137 @@
+# Phase C3 — Transition Authorization Matrix
+
+This document defines authorization and validation requirements
+for all state transitions defined in Phase C1.
+
+No new states or transitions are introduced here.
+This file assigns authority and conditions only.
+
+---
+
+## Transition: Created → ReceiverConfirmed
+
+**Authority:** Receiver
+
+**Required Conditions:**
+- Intent exists
+- Intent is in Created state
+- Receiver identity matches intent.receiver
+
+**Proof Required:**
+- Receiver acknowledgment proof (abstract)
+
+**Failure Outcome:**
+- If invalid or missing proof: remain in Created
+- If expired: transition handled by expiry rule
+
+---
+
+## Transition: Created → Invalid
+
+**Authority:** Protocol
+
+**Required Conditions:**
+- Intent detected as malformed OR
+- Intent parameters violate protocol invariants
+
+**Proof Required:**
+- None
+
+**Failure Outcome:**
+- Terminal Invalid state
+- Refund path preserved
+
+---
+
+## Transition: ReceiverConfirmed → Committed
+
+**Authority:** Sender
+
+**Required Conditions:**
+- ReceiverConfirmed state
+- Sender identity matches intent.sender
+- Intent parameters unchanged
+
+**Proof Required:**
+- Sender commitment proof (abstract)
+
+**Failure Outcome:**
+- If proof invalid: remain ReceiverConfirmed
+- If expired: transition handled by expiry rule
+
+---
+
+## Transition: ReceiverConfirmed → Invalid
+
+**Authority:** Protocol
+
+**Required Conditions:**
+- Proof contradiction detected
+- Timeout exceeded without sender action
+
+**Proof Required:**
+- None
+
+**Failure Outcome:**
+- Terminal Invalid state
+- Refund path preserved
+
+---
+
+## Transition: Committed → Completed
+
+**Authority:** Protocol
+
+**Required Conditions:**
+- Valid settlement condition satisfied
+- No conflicting proofs exist
+
+**Proof Required:**
+- Settlement fulfillment proof (abstract)
+
+**Failure Outcome:**
+- If settlement fails: remain Committed
+- If expiry reached: refund path applies
+
+---
+
+## Transition: Committed → Invalid
+
+**Authority:** Protocol
+
+**Required Conditions:**
+- Invalid or contradictory settlement proof
+- Detected tampering
+
+**Proof Required:**
+- None
+
+**Failure Outcome:**
+- Terminal Invalid state
+- Refund path preserved
+
+---
+
+## Expiry Rule (Global)
+
+**Authority:** Protocol
+
+**Applies To States:**
+- Created
+- ReceiverConfirmed
+- Committed
+
+**Condition:**
+- Intent expiry time reached without completion
+
+**Outcome:**
+- Refund to sender
+- Terminal state reached
+
+---
+
+## Notes
+
+- No transition may be initiated without declared authority.
+- No proof format is defined at this phase.
+- All terminal states are immutable.
