@@ -132,4 +132,17 @@ AuthorizationGating ==
 NoStrandedFunds ==
     intent_state \notin TerminalStates =>
         (intent_state = "Created" \/ intent_state = "Committed" \/ intent_state = "Expired")
+(*
+Specification definition
+*)
+
+vars ==
+    << intent_state,
+       authorization_valid,
+       proof_present,
+       is_expired >>
+
+Spec ==
+    Init /\ [][Next]_vars
+
 =============================================================================
