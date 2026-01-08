@@ -11,7 +11,7 @@ fn sample_intent() -> TransferIntent {
     TransferIntent {
         amount_xrp_drops: 1_000_000,
         expiry_unix: 9_999_999,
-        protocol_version: v1,
+        protocol_version: "v1",
         fee_drops: 10,
         binding: None,
     }
