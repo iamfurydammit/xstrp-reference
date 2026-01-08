@@ -1,9 +1,5 @@
 # XSTRP — XRP Safe Transfer & Recovery Protocol
 
-## Reference Implementation Status
-
-# XSTRP — XRP Safe Transfer & Recovery Protocol
-
 This repository contains the **reference Rust implementation** of the
 **XRP Safe Transfer & Recovery Protocol (XSTRP)**.
 
@@ -22,6 +18,7 @@ failure conditions.
 - Explicit safety-first design with terminal-state immutability
 - No XRPL integration yet
 - No cryptography yet
+- Protocol logic formally verified via TLA+ (Phase C5)
 
 ---
 
