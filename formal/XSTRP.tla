@@ -36,5 +36,7 @@ Next ==
      /\ state' = "Refunded"
   \/ /\ state \in {"Created", "Committed"}
      /\ state' = "Invalid"
+TypeInvariant ==
+  state \in States
 
 
