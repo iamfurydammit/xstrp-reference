@@ -24,11 +24,13 @@ States ==
   }
 Init ==
   state = "Created"
-Next ==
+
 Next ==
   \/ /\ state = "Created"
      /\ state' = "Committed"
   \/ /\ state = "Committed"
      /\ state' = "Completed"
+  \/ /\ state = "Committed"
+     /\ state' = "Expired"
 
 
