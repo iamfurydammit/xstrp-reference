@@ -40,5 +40,7 @@ TypeInvariant ==
   state \in States
 Spec ==
   Init /\ [][Next]_state
+TypeInvariantHolds ==
+  []TypeInvariant
 
 
