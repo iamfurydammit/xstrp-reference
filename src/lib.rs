@@ -8,6 +8,7 @@ pub mod intent;
 pub mod proof;
 pub mod bridge;
 pub mod intent_binding;
+pub mod interfaces;
 
 /// Re-export the core intent type for easier use.
 pub use intent::TransferIntent;
