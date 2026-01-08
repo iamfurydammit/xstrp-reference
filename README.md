@@ -87,8 +87,7 @@ will focus on:
 
 ## License
 
-## License
+Payne Protocol License (PPL-0.1) — see the `LICENSE` file for full terms.
 
-MIT License — see the `LICENSE` file for details.
 
 
