@@ -25,4 +25,6 @@ States ==
 Init ==
   state = "Created"
 Next ==
-  FALSE
+  /\ state = "Created"
+  /\ state' = "Committed"
+
