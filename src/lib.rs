@@ -9,10 +9,13 @@ pub mod proof;
 pub mod bridge;
 pub mod intent_binding;
 pub mod interfaces;
+
+// Phase C4 modules
 pub mod execute;
 pub mod proofs;
 pub mod validation;
 pub mod validation_request;
+pub mod validate; // <-- THIS WAS THE MISSING LINE
 
 /// Re-export the core intent type for easier use.
 pub use intent::TransferIntent;
@@ -24,4 +27,3 @@ mod smoke_test {
         assert_eq!(2 + 2, 4);
     }
 }
-
