@@ -27,8 +27,8 @@ pub fn validate_transition(request: &ValidationRequest) -> ValidationOutcome {
     }
 
     match (request.current_state, request.requested_state) {
-        // Created → ReceiverConfirmed
-        (IntentState::Created, IntentState::ReceiverConfirmed) => {
+        // Created → ReceiverAccepted
+        (IntentState::Created, IntentState::ReceiverAccepted) => {
             if request
                 .proofs
                 .iter()
@@ -40,8 +40,8 @@ pub fn validate_transition(request: &ValidationRequest) -> ValidationOutcome {
             }
         }
 
-        // ReceiverConfirmed → Committed
-        (IntentState::ReceiverConfirmed, IntentState::Committed) => {
+        // ReceiverAccepted → Committed
+        (IntentState::ReceiverAccepted, IntentState::Committed) => {
             if request
                 .proofs
                 .iter()
