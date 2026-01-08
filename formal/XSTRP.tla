@@ -38,5 +38,7 @@ Next ==
      /\ state' = "Invalid"
 TypeInvariant ==
   state \in States
+Spec ==
+  Init /\ [][Next]_state
 
 
