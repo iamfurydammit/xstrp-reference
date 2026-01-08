@@ -24,3 +24,5 @@ States ==
   }
 Init ==
   state = "Created"
+Next ==
+  FALSE
