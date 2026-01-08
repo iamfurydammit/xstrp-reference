@@ -42,5 +42,6 @@ Spec ==
   Init /\ [][Next]_state
 TypeInvariantHolds ==
   []TypeInvariant
+====
 
 
