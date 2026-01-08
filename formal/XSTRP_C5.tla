@@ -105,3 +105,31 @@ Next ==
     \/ CommittedToExpired
     \/ ExpiredToRefunded
 
+(*
+Safety invariants corresponding to formal/INVARIANTS.md
+*)
+
+ValidStateSpace ==
+    intent_state \in States
+
+TerminalStates ==
+    {"Completed", "Refunded", "Invalid"}
+
+NoCompletionWithoutAuthorization ==
+    intent_state = "Completed" =>
+        /\ authorization_valid = TRUE
+        /\ proof_present = TRUE
+        /\ is_expired = FALSE
+
+NoCompletionAfterExpiry ==
+    intent_state = "Completed" =>
+        is_expired = FALSE
+
+AuthorizationGating ==
+    (intent_state' = "Completed") =>
+        authorization_valid = TRUE
+
+NoStrandedFunds ==
+    intent_state \notin TerminalStates =>
+        (intent_state = "Created" \/ intent_state = "Committed" \/ intent_state = "Expired")
+=============================================================================
