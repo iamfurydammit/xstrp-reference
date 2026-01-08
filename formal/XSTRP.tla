@@ -34,5 +34,7 @@ Next ==
      /\ state' = "Expired"
   \/ /\ state = "Expired"
      /\ state' = "Refunded"
+  \/ /\ state \in {"Created", "Committed"}
+     /\ state' = "Invalid"
 
 
