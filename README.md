@@ -19,6 +19,7 @@ failure conditions.
 - No XRPL integration yet
 - No cryptography yet
 - Protocol logic formally verified via TLA+ (Phase C5)
+- Audit-ready (no external audit performed)
 
 ---
 
