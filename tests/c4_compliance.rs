@@ -1,9 +1,6 @@
 use xstrp::{
     execute::execute_transition,
-    proofs::{
-        Proof, ReceiverAcknowledgmentProof, SenderCommitmentProof,
-        SettlementFulfillmentProof,
-    },
+    proofs::{Proof, ReceiverAcknowledgmentProof, SettlementFulfillmentProof},
     state_machine::IntentState,
     validation::ValidationOutcome,
     validation_request::ValidationRequest,
@@ -21,31 +18,30 @@ fn sample_intent() -> TransferIntent {
 }
 
 #[test]
-fn created_to_receiver_confirmed_requires_receiver_proof() {
+fn created_to_committed_requires_receiver_proof() {
     let intent = sample_intent();
 
     let request = ValidationRequest {
         intent: &intent,
         current_state: IntentState::Created,
-        requested_state: IntentState::ReceiverAccepted,
+        requested_state: IntentState::Committed,
         proofs: vec![],
     };
 
-    let (state, outcome) =
-        execute_transition(IntentState::Created, &request);
+    let (state, outcome) = execute_transition(IntentState::Created, &request);
 
     assert_eq!(state, IntentState::Created);
     assert!(matches!(outcome, ValidationOutcome::Rejected(_)));
 }
 
 #[test]
-fn created_to_receiver_confirmed_succeeds_with_proof() {
+fn created_to_committed_succeeds_with_receiver_proof() {
     let intent = sample_intent();
 
     let request = ValidationRequest {
         intent: &intent,
         current_state: IntentState::Created,
-        requested_state: IntentState::ReceiverAccepted,
+        requested_state: IntentState::Committed,
         proofs: vec![Proof::ReceiverAcknowledgment(
             ReceiverAcknowledgmentProof {
                 intent_id: "intent-1".to_string(),
@@ -54,10 +50,9 @@ fn created_to_receiver_confirmed_succeeds_with_proof() {
         )],
     };
 
-    let (state, outcome) =
-        execute_transition(IntentState::Created, &request);
+    let (state, outcome) = execute_transition(IntentState::Created, &request);
 
-    assert_eq!(state, IntentState::ReceiverAccepted);
+    assert_eq!(state, IntentState::Committed);
     assert_eq!(outcome, ValidationOutcome::Approved);
 }
 
@@ -72,8 +67,7 @@ fn terminal_state_cannot_transition() {
         proofs: vec![],
     };
 
-    let (state, outcome) =
-        execute_transition(IntentState::Completed, &request);
+    let (state, outcome) = execute_transition(IntentState::Completed, &request);
 
     assert_eq!(state, IntentState::Completed);
     assert!(matches!(outcome, ValidationOutcome::Rejected(_)));
@@ -90,8 +84,7 @@ fn committed_to_completed_requires_settlement_proof() {
         proofs: vec![],
     };
 
-    let (state, outcome) =
-        execute_transition(IntentState::Committed, &request);
+    let (state, outcome) = execute_transition(IntentState::Committed, &request);
 
     assert_eq!(state, IntentState::Committed);
     assert!(matches!(outcome, ValidationOutcome::Rejected(_)));
@@ -113,12 +106,8 @@ fn committed_to_completed_succeeds_with_settlement_proof() {
         )],
     };
 
-    let (state, outcome) =
-        execute_transition(IntentState::Committed, &request);
+    let (state, outcome) = execute_transition(IntentState::Committed, &request);
 
     assert_eq!(state, IntentState::Completed);
-    assert_eq!(outcome, ValidationOutcome::Approved);
-}
-
     assert_eq!(outcome, ValidationOutcome::Approved);
 }
