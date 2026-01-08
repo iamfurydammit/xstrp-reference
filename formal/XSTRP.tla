@@ -32,5 +32,7 @@ Next ==
      /\ state' = "Completed"
   \/ /\ state = "Committed"
      /\ state' = "Expired"
+  \/ /\ state = "Expired"
+     /\ state' = "Refunded"
 
 
