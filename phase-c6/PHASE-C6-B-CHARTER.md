@@ -9,7 +9,15 @@ DRAFT — NOT AUTHORIZED
 
 ## Scope — What This Phase Does
 
-[To be defined]
+Phase C6-B exists to define governance rules and safety boundaries for
+how XSTRP intents are presented to, confirmed by, and handed off through
+wallet and user interface surfaces, without altering protocol semantics
+or assuming control over keys, signing, or transaction broadcast. This
+phase ensures that human interaction with XSTRP preserves explicit
+authorization, informed consent, and deterministic outcomes while
+maintaining strict authority separation between the XSTRP core, wallets,
+and external systems.
+
 
 ## Explicit Non-Goals — What This Phase Does NOT Do
 
