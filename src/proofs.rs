@@ -5,7 +5,6 @@
 //!
 //! No cryptography, verification, or logic is implemented here.
 
-use crate::TransferIntent;
 
 /// Proofs are provided as inputs to validation and transition requests.
 /// They are not trusted by default.
