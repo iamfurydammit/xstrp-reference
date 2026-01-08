@@ -21,3 +21,20 @@ pub trait IntentStateView {
     /// No guarantees are made about freshness or consistency.
     fn get_state(&self, intent_id: &str) -> Option<crate::IntentState>;
 }
+/// Declarative interface for requesting a state transition on a TransferIntent.
+///
+/// This trait defines *that* a transition may be requested,
+/// not *whether* it will occur or *how* it is evaluated.
+///
+/// No validation, authorization, or execution semantics are implied.
+pub trait IntentTransitionRequest {
+    /// Requests a transition to a new state.
+    ///
+    /// This method does not guarantee that the transition is valid,
+    /// accepted, or applied.
+    fn request_transition(
+        &self,
+        intent_id: &str,
+        target_state: crate::IntentState,
+    );
+}
